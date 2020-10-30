@@ -1,8 +1,9 @@
 {% extends "bases.html" %}
-
+{% block body %}
+<body class="inicio" >
+{% endblock %}
 
 {% block content %}
-
 <div class="container" style="background-color: white;">
   <div class="row my-3"> 
     <div class="col-12 text-center">
@@ -24,25 +25,25 @@
         <div class="carousel-inner">
           <div class="carousel-item active">
             {% load static %}
-            <a href="#"><img class="carro" src="{% static 'images/dc_comics.jpg' %}" ></a>
+            <a href="{% url 'dc' 2 %}"><img class="carro" src="{% static 'images/dc_comics.jpg' %}" ></a>
               <div class="carousel-caption">
                 <h3>DC COMICS</h3>
               </div>
           </div>
           <div class="carousel-item">
               {% load static %}
-              <a href="marvel.html"><img class="carro" src="{% static 'images/marvel.jpg' %}"></a>
+              <a href="{% url 'marvel' 3 %}"><img class="carro" src="{% static 'images/marvel.jpg' %}"></a>
               <div class="carousel-caption">
                 <h3>MARVEL COMICS</h3>
               </div>
           </div>
           <div class="carousel-item">
             {% load static %}
-            <a href="manga.html"><img class="carro" src="{% static 'images/manga.png' %}"></a>
+            <a href="{% url 'manga' 1 %}"><img class="carro" src="{% static 'images/manga.png' %}"></a>
             <div class="carousel-caption">
               <h3>MANGAS</h3>
             </div>
-        </div>
+          </div>
         </div>
         <!-- botones de desplazamiento a izquierda y derecha -->      
         <a class="carousel-control-prev" href="#carousel1" data-slide="prev">
@@ -65,7 +66,7 @@
   <div class="row my-3"> 
     <div class="col-12 text-center">
         <div class="titulos_secciones_container">
-            <span class="titulos_secciones">Destacados</span>
+            <span class="titulos_secciones">Coleccion</span>
         </div>
     </div>
   </div>
@@ -73,7 +74,8 @@
  
   
   <div class="row">
-    {% for x in comics %}
+    
+    {% for x in entity %}
     <div class="col-md-3"  style="background-color:#fff">
       <div class="card text-center" style="background-color: #fff ">
         <h4 class="card-header tit">{{ x.titulo }}</h4>
@@ -81,19 +83,20 @@
           {% if x.imagen %}
           <img class="img" src="{{ x.imagen.url }}">
           {% endif %}
-          <p class="card-text">{{ x.precio }} </p>
+          <p class="card-text"><span> $  </span>{{ x.precio }} </p>
           <button class="btn btn-primary btn-sm" style="float: left;">Añadir al carro</button>
-          <a href="#" class="btn btn-primary btn-sm" style="float: right;">Ver más</a>
+          <a href="{% url 'comic-detail' x.pk %}" class="btn btn-info btn-sm" style="float: right;">Ver más</a>
         </div> 
       </div>          
     </div>
     {% endfor %}
   </div>
   <hr>
+  {% include "paginator.html" %}
 <!-- fin productos -->
-
+</div>
 
 {% endblock %}
-</div>
+
 <hr>
 

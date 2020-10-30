@@ -8,7 +8,7 @@ import uuid
 class Tipo(models.Model): 
     
 	tipoo = models.CharField(max_length=200)
-	
+
 	def __str__(self):
 		return self.tipoo
 
@@ -52,4 +52,4 @@ class Autor(models.Model):
 		return reverse('autor-detail', args=[str(self.id)])
 
 	def __str__(self):
-		return f'{self.nombre}, {self.apellido}'	    
+		return f'{self.nombre} {self.apellido}'	    
