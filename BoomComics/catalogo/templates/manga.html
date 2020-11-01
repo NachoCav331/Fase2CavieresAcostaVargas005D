@@ -19,17 +19,19 @@
   
   <div class="row">
     {% for x in entity %}
-    <div class="col-md-3"  style="background-color:#fff">
+    <div class="col-sm-3"  style="background-color:#fff">
       <div class="card text-center" style="background-color: #fff ">
-        <h4 class="card-header tit">{{ x.titulo }}</h4>
+        <h4 class="card-header tit" style="text-align: center; font-size: medium;">{{ x.titulo }}</h4>
         <div class="card-body">
           {% if x.imagen %}
-          <img class="img" src="{{ x.imagen.url }}">
+          <img width="100%" height="100%" src="{{ x.imagen.url }}">
           {% endif %}
-          <p class="card-text"><span> $  </span>{{ x.precio }} </p>
-          <button class="btn btn-primary btn-sm" style="float: left;">Añadir al carro</button>
-          <a href="{% url 'comic-detail' x.pk %}" class="btn btn-info btn-sm" style="float: right;">Ver más</a>
+          <p class="card-text"><span> $ </span>{{ x.precio }} </p>
         </div> 
+        <div class="card-footer " style="display: flexbox;">
+          <button data-id="add" class="btn btn-primary btn-sm" style="display: flexbox; ">Comprar</button>
+          <a href="{% url 'comic-detail' x.pk %}" class="btn btn-info btn-sm" style="display: flexbox ;">Ver más</a>
+        </div>  
       </div>          
     </div>
     {% endfor %}

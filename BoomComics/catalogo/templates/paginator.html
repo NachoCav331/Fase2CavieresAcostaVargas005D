@@ -3,6 +3,8 @@
     <ul class="pagination">
         {% if entity.has_previous %}
             <li class="page-item d-none d-sm-block"><a class="page-link" href="?page={{ entity.previous_page_number }}#pagtable">Anterior</a></li>
+        {% else %}
+            <li class="page-item d-none d-sm-block"><a class="page-link" href="#">Anterior</a></li>
         {% endif %}
         {% for page in paginator.page_range %}
             {% if forloop.last and page != entity.number and paginator.num_pages > 7 %} 
@@ -29,6 +31,10 @@
         {% if entity.has_next %}
             <li class="page-item d-none d-sm-block">
                 <a class="page-link" href="?page={{ entity.next_page_number }}#pagtable">Siguiente</a>
+            </li>
+        {% else %}
+            <li class="page-item d-none d-sm-block">
+                <a class="page-link" href="#">Siguiente</a>
             </li>
         {% endif %}
     </ul>

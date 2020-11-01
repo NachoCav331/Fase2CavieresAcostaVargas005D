@@ -6,6 +6,7 @@ urlpatterns=[
     path('Mangas/<int:tip_list>',views.mangas,name='manga'), 
     path('DC/<int:tip_dc>',views.dc,name='dc'), 
     path('MARVEL/<int:tip_m>',views.marvel,name='marvel'), 
+    path('contacto/',views.contacto,name='contacto'),
     path('comic/<str:pk>',views.ComicDetailView.as_view(),name='comic-detail'),   
 ]
 urlpatterns+=[

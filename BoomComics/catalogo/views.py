@@ -89,8 +89,15 @@ def marvel(request, tip_m):
     return render(
         request,  
         'marvel.html', data
-    )         
+    )   
+def contacto(request):
+    
+    return render(
+        request,
+        'contacto.html',
+    )
 
+#CRUD de tabala Comic
 class ComicCreate(CreateView):
     model = Comic
     form_class = ComicsForms

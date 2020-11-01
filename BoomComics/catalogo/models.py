@@ -46,7 +46,7 @@ class Autor(models.Model):
 	apellido = models.CharField(max_length=100)
 
 	class Meta: 
-		ordering = ['nombre', 'apellido']
+		ordering = ['nombre' , 'apellido']
 
 	def get_absolute_url(self):
 		return reverse('autor-detail', args=[str(self.id)])
