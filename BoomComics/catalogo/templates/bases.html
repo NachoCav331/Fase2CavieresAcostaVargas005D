@@ -54,6 +54,9 @@
                 <li class="nav-item">
                   <a class="nav-link " href="{% url 'contacto' %}" style="color:#000;">Contacto</a>
                 </li>
+                <li class="nav-item"> 
+                  <a class="nav-link " href="{% url 'autor-list' %}" style="color:#000;">Autores</a>
+                </li>
                 <!-- carrito -->
                 <ul class="navbar-nav mr-auto">
                   <li class="nav-item dropdown">
@@ -89,6 +92,7 @@
               <button class="nav-link dropdown-toggle btn" style="color: black; margin-right: 100px;" data-toggle="dropdown" href="#"><img src="{% static 'images/add.png' %}" width="30" height="30" alt=""></button>
               <div class="dropdown-menu">
                 <a class="dropdown-item" href="{% url 'comic_create' %}">Añadir comic</a>
+                <a class="dropdown-item" href="{% url 'autor_create' %}">Añadir autor</a>
               </div>
             </li>
           </ul>

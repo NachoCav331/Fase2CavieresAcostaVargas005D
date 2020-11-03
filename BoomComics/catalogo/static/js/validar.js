@@ -66,7 +66,8 @@ function validar()
             icon: 'success',
             title: 'Enviado',
             text: 'Su mensaje ha sido enviado, en breve enviaremos la respuesta a su correo',
-            timer: 4000
+            timer: 4000,
+            showConfirmButton: false
         }).then(function()
         {
             window.location.href = 'http://127.0.0.1:8000/catalogo/';

@@ -114,4 +114,14 @@ class ComicDelete(DeleteView):
 
 class ComicDetailView(generic.DetailView):
     model = Comic
-
+#CRUD AUTOR
+class AutorCreate(CreateView):
+    model = Autor
+    fields ='__all__'
+class AutorDelete(DeleteView):
+    model= Autor
+    success_url = reverse_lazy('index')
+class AutorDetailView(generic.DetailView):
+    model = Autor
+class AutorListView(generic.ListView):
+    queryset= Autor.objects.all().order_by('pk')
