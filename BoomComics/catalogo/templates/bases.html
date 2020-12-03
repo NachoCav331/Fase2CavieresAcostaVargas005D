@@ -11,6 +11,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   
+  
   <!-- Add additional CSS in static file -->
   {% load static %}
   <link rel="stylesheet" href="{% static 'css/estilos_dc.css' %}">
@@ -24,7 +25,7 @@
   
       <!-- {% block navbar %} -->
       <header>
-        <nav class="navbar navbar-expand-sm navbar-light bg-light">
+        <nav class="navbar navbar-expand-sm navbar-light" style="background-color: #ffe600;">
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#opciones">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -57,50 +58,42 @@
                 <li class="nav-item"> 
                   <a class="nav-link " href="{% url 'autor-list' %}" style="color:#000;">Autores</a>
                 </li>
-                <!-- carrito -->
-                <ul class="navbar-nav mr-auto">
-                  <li class="nav-item dropdown">
-                      {% load static %}
-                      <img src="{%static 'images/c.png' %}" class="nav-link dropdown-toggle img-fluid" height="40px"
-                          width="40px" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true"
-                          aria-expanded="false"></img>
-                      <div id="carrito" class="dropdown-menu" aria-labelledby="navbarCollapse">
-                          <table id="lista-carrito" class="table">
-                              <thead>
-                                  <tr>
-                                      <th>Imagen</th>
-                                      <th>Nombre</th>
-                                      <th>Precio</th>
-                                      <th></th>
-                                  </tr>
-                              </thead>
-                              <tbody></tbody>
-                          </table>
-      
-                          <a href="#" id="vaciar-carrito" class="btn btn-primary btn-block">Vaciar Carrito</a>
-                          <a href="#" id="procesar-pedido" class="btn btn-danger btn-block">Procesar
-                              Compra</a>   
-                      </div>
-                  </li>
-                </ul> 
-              <!--fin carrito -->
-              </ul>
+                {% block header %}
+                 <!-- carrito -->
+                 {% include "carrito.html" %}
+                 <!--fin carrito -->
+                 {% endblock %}
+                 
+              
+            </ul>
+          </div>
+        </div>  
+        <ul class="nav justify-content-end">
+          <!----===============================================================================================-->
+          {% if user.is_authenticated  %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}" style="color : #000; border-style: solid; border-color:#000; background-color: rgb(214, 127, 45); color: white"> Cerrar sesión </a> </li>
+        {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'login' %}" style="color: #000; border-style: solid;border-color:#000 ; background-color: rgb(214, 127, 45); color: white"> Ingresar </a> </li>
+        {% endif %}
+        <!----===============================================================================================-->
+        {% if user.is_authenticated  %}{% if user.is_staff %}
+          <li class="nav-item dropdown">
+            <button class="nav-link dropdown-toggle btn" style="color: black; margin-right: 100px;" data-toggle="dropdown" href="#"><img src="{% static 'images/add.png' %}" width="30" height="30" alt=""></button>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="{% url 'comic_create' %}">Añadir comic</a>
+              <a class="dropdown-item" href="{% url 'autor_create' %}">Añadir autor</a>
             </div>
-          </div>  
-          <ul class="nav justify-content-end">
-            <li class="nav-item dropdown">
-              <button class="nav-link dropdown-toggle btn" style="color: black; margin-right: 100px;" data-toggle="dropdown" href="#"><img src="{% static 'images/add.png' %}" width="30" height="30" alt=""></button>
-              <div class="dropdown-menu">
-                <a class="dropdown-item" href="{% url 'comic_create' %}">Añadir comic</a>
-                <a class="dropdown-item" href="{% url 'autor_create' %}">Añadir autor</a>
-              </div>
-            </li>
-          </ul>
+          </li>
+        </ul>
+        {% else %}{% endif %}{% else %}{% endif %}
         </nav>
       </header>
       <hr>
      <!-- {% endblock %} -->
-
+     {% include 'messages.html' %}
+     <hr>
       {% block content %}{% endblock %}
   {% block footer %}
   <footer>
@@ -110,7 +103,7 @@
             <h3 style="color: black;">
                 Boom<span style="color: red;">Comics!</span>
             </h3>
-            <p style="color: black;">boomComics! &copy; 2020</p>
+            <p style="color: black;">BoomComics! &copy; 2020</p>
         </div>
         
         <div class="col-md-4 foot-center">
@@ -145,6 +138,14 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>  
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
   <script type="text/javascript" src="{% static 'js/validar.js' %} "></script>
+  
+  <script>
+    setTimeout(function(){
+      if ($('#msg').length > 0) {
+        $('#msg').remove();
+      }
+    }, 2000)
+  </script>
   
 </body>
 </html>

@@ -50,7 +50,12 @@ footer {
     position: relative;
     height: 100%;
     background-color: #91908f;
-    padding: 10px;
+    padding: 10px;  
+}
+#carrito {
+    overflow:scroll;
+    height:200px;
+    width:300px;
 }
 #carrito table {
    width:300px;

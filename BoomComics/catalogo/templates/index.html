@@ -86,7 +86,7 @@
           <p class="card-text"><span> $ </span>{{ x.precio }} </p>
         </div> 
         <div class="card-footer " style="display: flexbox;">
-          <button data-id="add" class="btn btn-primary btn-sm" style="display: flexbox; ">Comprar</button>
+          <a href="{% url 'cart:add_product' x.pk %}" class="btn btn-primary btn-sm" style="display: flexbox; ">Comprar</a>
           <a href="{% url 'comic-detail' x.pk %}" class="btn btn-info btn-sm" style="display: flexbox ;">Ver más</a>
         </div>  
       </div>          

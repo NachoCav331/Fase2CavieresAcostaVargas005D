@@ -24,14 +24,13 @@ class Comic(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
     titulo = models.CharField(max_length=200)
-    autor = models.ForeignKey('Autor',on_delete=models.SET_NULL, null=True)
-
+    autor = models.ForeignKey('Autor', on_delete=models.SET_NULL, null=True)
     resumen = models.TextField(max_length=10000)
     isbn = models.CharField('ISBN', max_length=13)
     tipo = models.ForeignKey('Tipo',on_delete=models.SET_NULL, null=True)
     formato = models.ForeignKey('Formato',on_delete=models.SET_NULL, null=True)
     precio = models.IntegerField(default=0)
-    imagen = models.ImageField( upload_to='images/',null=True, blank=True)
+    imagen = models.ImageField( upload_to='images/', null=True, blank=True )
 
 
     def __str__(self):

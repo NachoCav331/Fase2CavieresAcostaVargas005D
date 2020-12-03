@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from . models import Comic, Autor, Formato, Tipo
 from django.views import generic
+from cart.cart import Cart
 
 from django.core.paginator import Paginator
 from django.http import Http404
@@ -12,6 +13,7 @@ from .forms import ComicsForms
 # Create your views here.
 
 def index(request):
+    cart = Cart(request)
     comics_list = Comic.objects.all()
     page = request.GET.get('page',1)
 
@@ -32,6 +34,7 @@ def index(request):
 
 # vista que lee los mangas
 def mangas(request, tip_list):
+    cart = Cart(request)
     tip_list = Comic.objects.filter(tipo=1)
     page = request.GET.get('page',1)
 
@@ -53,6 +56,7 @@ def mangas(request, tip_list):
 
 # vista que lee los comics de dc
 def dc(request, tip_dc):
+    cart = Cart(request)
     tip_dc = Comic.objects.filter(tipo=2)
     page = request.GET.get('page',1)
 
@@ -73,6 +77,7 @@ def dc(request, tip_dc):
 
 # vista que lee los comics de marvel
 def marvel(request, tip_m):
+    cart = Cart(request)
     tip_m = Comic.objects.filter(tipo=3)
     page = request.GET.get('page',1)
 
